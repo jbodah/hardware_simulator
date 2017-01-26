@@ -33,9 +33,27 @@ module HardwareSimulator
         when :chip_interface
           case line
           when /IN\s+(.+)\s*;/
-            state[:params] = $1.split(",").map(&:strip)
+            params = $1.split(",").map(&:strip)
+            state[:params] =
+              params.map do |param|
+                case param
+                when /(\w+)\[(\d+)\]/
+                  {type: :array, name: $1, size: $2}
+                else
+                  {type: :bit, name: param}
+                end
+              end
           when /OUT\s+(.+)\s*;/
-            state[:outputs] = $1.split(",").map(&:strip)
+            outputs = $1.split(",").map(&:strip)
+            state[:outputs] =
+              outputs.map do |output|
+                case output
+                when /(\w+)\[(\d+)\]/
+                  {type: :array, name: $1, size: $2}
+                else
+                  {type: :bit, name: output}
+                end
+              end
           when /PARTS:/
             state[:fsm] = :chip_parts
           when /^\s*$/

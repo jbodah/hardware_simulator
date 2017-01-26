@@ -4,11 +4,16 @@ module HardwareSimulator
   module Chip
     class Nand < Base
       def params
-        %w(a b)
+        [
+          {type: :bit, name: "a"},
+          {type: :bit, name: "b"}
+        ]
       end
 
       def outputs
-        %w(out)
+        [
+          {type: :bit, name: "out"}
+        ]
       end
 
       def process
@@ -16,7 +21,8 @@ module HardwareSimulator
           case
           when @a == 0 then 1
           when @b == 0 then 1
-          else 0
+          else
+            0
           end
       end
     end

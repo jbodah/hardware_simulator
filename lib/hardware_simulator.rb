@@ -12,7 +12,7 @@ module HardwareSimulator
         define_method "test_#{chip.name}__#{test.expected}" do
           expected_output =
             test.expected.reduce({}) do |acc, (k, v)|
-              if chip.new.outputs.include?(k)
+              if chip.new.outputs.map {|output| output[:name]}.include?(k)
                 acc[k] = v
               end
               acc
