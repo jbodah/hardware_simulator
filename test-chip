@@ -1,0 +1,2 @@
+#! /usr/bin/env sh
+ruby -Ilib -rhardware_simulator -e "HardwareSimulator.test_vendor(\"$1\")"
