@@ -23,6 +23,10 @@ module HardwareSimulator
           when /CHIP\s+(\w+)\s*{/
             state[:fsm] = :chip_interface
             state[:name] = $1
+          when /^\s*$/
+            # skip, whitespace"
+          when /^\s*\/\//, /^\s*\/?\*/
+            # skip, comment
           else
             raise
           end
