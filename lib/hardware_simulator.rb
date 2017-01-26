@@ -1,8 +1,6 @@
 require "hardware_simulator/version"
 require "hardware_simulator/chip"
-require "hardware_simulator/chip/or"
-require "hardware_simulator/chip/and"
-require "hardware_simulator/chip/not"
+require "hardware_simulator/chip/nand"
 require "hardware_simulator/cmp_file"
 
 module HardwareSimulator
